@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class User {
 
+	private int id;
 	private String username;
 	private String userPassword;
 	private String firstName;
@@ -36,6 +37,10 @@ public class User {
 		this.userType = "";
 		
 	}
+	public int getId() {
+		return id;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
