@@ -1,8 +1,10 @@
 package com.sitrus.user.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class User {
 
 	private int id;
@@ -37,6 +39,14 @@ public class User {
 		this.userType = "";
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", userPassword=" + userPassword + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", zip=" + zip + ", userType=" + userType
+				+ "]";
+	}
+
 	public int getId() {
 		return id;
 	}

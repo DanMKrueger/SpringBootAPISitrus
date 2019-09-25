@@ -20,12 +20,12 @@ public class SignUpService {
 	
 	//read
 	
-	public User getUser(int id) {
+	/*public User getUser(int id) {
 		
 		User user = null;
 		for(int s  = 0; )
 		
-	}
+	}*/
 	
 	
 
