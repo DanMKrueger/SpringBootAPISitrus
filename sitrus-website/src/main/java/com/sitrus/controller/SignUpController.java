@@ -11,8 +11,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class SignUpController {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/signup")
-	public void printUser(@RequestBody ObjectNode objNode) {
-		System.out.println(objNode.get("str1").asText());
+	public void printUser(@RequestBody String objNode) {
+		System.out.println(objNode);
 	}
 
 }
