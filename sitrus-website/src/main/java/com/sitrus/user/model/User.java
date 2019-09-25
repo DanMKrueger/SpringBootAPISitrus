@@ -1,4 +1,4 @@
-package com.collabera.sitrus.user;
+package com.sitrus.user.model;
 
 import javax.persistence.Entity;
 
@@ -96,5 +96,7 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
+	
 
 }
