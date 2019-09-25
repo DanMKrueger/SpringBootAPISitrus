@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @RestController
 public class SignUpController {
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/signup")
+	@RequestMapping(method=RequestMethod.POST, value="/signup")
 	public void printUser(@RequestBody String objNode) {
 		System.out.println(objNode);
 	}
