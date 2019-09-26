@@ -30,6 +30,7 @@ public class User {
 	public User(String username, String userPassword, String firstName, String lastName, String email, String zip,
 			String userType) {
 		super();
+		this.id = 0;
 		this.user_name = username;
 		this.user_password = userPassword;
 		this.first_name = firstName;
@@ -41,6 +42,7 @@ public class User {
 	
 	public User() {
 		super();
+		this.id=0;
 		this.user_name = "";
 		this.user_password = "";
 		this.first_name = "";
@@ -61,7 +63,9 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	
+	public void setId() {
+		this.id=0;
+	}
 	public String getUsername() {
 		return user_name;
 	}

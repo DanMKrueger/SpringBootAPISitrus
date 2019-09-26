@@ -20,7 +20,7 @@ public class SignUpController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/signup")
 	public void createUserObject(@RequestBody String enteredUser) {
-		System.out.println(enteredUser);
+		//System.out.println(enteredUser);
 		createUser(enteredUser);
 	}
 	
@@ -49,7 +49,7 @@ public class SignUpController {
 		// The emails passed in get the @ replaced with a % symbol, so to undo that we
 		// get the email adress, and we replace the % with an @ and then replace the email with
 		// the fixed email in our array list before we make our User object.
-		System.out.println(userString);
+		//System.out.println(userString);
 		newStringToAdd = allInfo.get(4);
 		newStringToAdd = newStringToAdd.replace("%40", "@");
 		allInfo.set(4, newStringToAdd);
@@ -57,6 +57,7 @@ public class SignUpController {
 		// Take all the information that has been passed in, and go through it 1 by one to create our user.
 		// The information passed in will always be in the same order, so we can set our user object 
 		// like we do below.
+		enteredUser.setId();
 		enteredUser.setUsername(allInfo.get(0));
 		enteredUser.setUserPassword(allInfo.get(1));
 		enteredUser.setFirstName(allInfo.get(2));
