@@ -48,8 +48,9 @@ public class SignUpController {
 		// The emails passed in get the @ replaced with a % symbol, so to undo that we
 		// get the email adress, and we replace the % with an @ and then replace the email with
 		// the fixed email in our array list before we make our User object.
+		System.out.println(userString);
 		newStringToAdd = allInfo.get(4);
-		newStringToAdd = newStringToAdd.replace('%', '@');
+		newStringToAdd = newStringToAdd.replace("%40", "@");
 		allInfo.set(4, newStringToAdd);
 
 		// Take all the information that has been passed in, and go through it 1 by one to create our user.
