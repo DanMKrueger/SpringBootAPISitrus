@@ -25,5 +25,14 @@ public class PasswordReset {
 		
 	}
 	*/
+//	public User resetPass(int id) {
+//		
+//		if(user.getId() == id) {
+//			
+//			
+//			
+//		}
+//		
+//	}s
 	
 }
