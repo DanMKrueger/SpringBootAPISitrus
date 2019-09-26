@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Id;
+
 @Entity
 @Table(name="users", schema="sitrususers")
 public class User {
+
 
 	@Id
 	private int id;

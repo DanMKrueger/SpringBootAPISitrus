@@ -12,6 +12,19 @@ public class PasswordReset {
 	User user = new User();
 	
 	
+	/*public User resetPass(int id) {
+		
+		if(user.getId() == id) {
+			
+			
+			
+		}
+		
+		
+		
+		
+	}
+	*/
 //	public User resetPass(int id) {
 //		
 //		if(user.getId() == id) {
@@ -20,7 +33,6 @@ public class PasswordReset {
 //			
 //		}
 //		
-//	}
-	
+//	}s
 	
 }

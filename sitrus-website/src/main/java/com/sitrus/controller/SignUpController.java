@@ -1,6 +1,6 @@
 package com.sitrus.controller;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +20,7 @@ public class SignUpController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/signup")
 	public void createUserObject(@RequestBody String enteredUser) {
+		System.out.println(enteredUser);
 		createUser(enteredUser);
 	}
 	
