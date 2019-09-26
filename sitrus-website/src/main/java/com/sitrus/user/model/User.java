@@ -3,10 +3,14 @@ package com.sitrus.user.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Id;
+
 @Entity
 @Table(name="users")
 public class User {
 
+	
+	@Id 
 	private int id;
 	private String username;
 	private String userPassword;

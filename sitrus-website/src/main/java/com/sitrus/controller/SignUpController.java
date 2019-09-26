@@ -15,6 +15,7 @@ public class SignUpController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/signup")
 	public void createUserObject(@RequestBody String enteredUser) {
+		System.out.println(enteredUser);
 		createUser(enteredUser);
 	}
 	
