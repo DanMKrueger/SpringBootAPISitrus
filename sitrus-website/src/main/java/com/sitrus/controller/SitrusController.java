@@ -1,14 +1,17 @@
 package com.sitrus.controller;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
+<<<<<<< HEAD:sitrus-website/src/main/java/com/sitrus/controller/SitrusController.java
 import javax.servlet.http.HttpServletRequest;
 
+=======
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+>>>>>>> 215070e88e2f5afc71974cf7b2aa397403ae030f:sitrus-website/src/main/java/com/sitrus/controller/SignUpController.java
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sitrus.ConnectionManager;
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
 import com.sitrus.user.service.UserService;
@@ -46,12 +48,15 @@ public class SignUpController{
 =======
 	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
-	public void testing(@RequestBody String enteredString) throws SQLException {
+	public void testing(@RequestBody String enteredString) throws Exception {
 		//System.out.println(enteredUser);
 		userLogin(enteredString);
 	}
 	
-	public User userLogin(String enteredString)  throws SQLException{
+/******************************* User Login *******************************/
+
+	
+	public User userLogin(String enteredString)  throws Exception{
 		//un=DMKrueger&pass=asdfsaf
 		User enteredUser = new User();
 		
@@ -63,25 +68,21 @@ public class SignUpController{
 			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
 			allInfo.add(str);
 		}
+
 		
-//		Connection con = ConnectionManager.getConnection();
-//		try {
-//			Statement statement = con.createStatement();
-//			String query = "SELECT * FROM users WHERE user_name=\"" + allInfo.get(0) + "\"";
-//			System.out.println(query);
-//			ResultSet rs = statement.executeQuery(query);
-//			rs.next();
-//			String UserName = rs.getString("first_name");
-//			System.out.println(UserName);
-//		}catch(SQLException e){
-//			System.out.println("User Name not found!");
-//			//e.printStackTrace();
-//		}
-		
+		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
+		allUsers.forEach(n -> {
+			if(n.getUsername().equals(allInfo.get(0))) System.out.println(n.toString());
+		});
 		return null;
 	}
 	
+<<<<<<< HEAD:sitrus-website/src/main/java/com/sitrus/controller/SitrusController.java
 >>>>>>> 7a6f488f941575a4f034556876ccc62f490dacbf:sitrus-website/src/main/java/com/sitrus/controller/SignUpController.java
+=======
+/******************************* Create User *******************************/
+	
+>>>>>>> 215070e88e2f5afc71974cf7b2aa397403ae030f:sitrus-website/src/main/java/com/sitrus/controller/SignUpController.java
 	public User createUser(String userString) {
 
 		// Create a new user object, a delimiter we use to split up our string passed
