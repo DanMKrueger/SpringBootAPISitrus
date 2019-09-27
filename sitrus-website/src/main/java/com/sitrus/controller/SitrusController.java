@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
-import com.sitrus.user.service.UserService;
 
 @RestController
 public class SitrusController {
 
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private UserRepository userRepo;
@@ -89,7 +86,7 @@ public class SitrusController {
 		// email with
 		// the fixed email in our array list before we make our User object.
 		newStringToAdd = allInfo.get(4);
-		newStringToAdd = newStringToAdd.replace('%', '@');
+		newStringToAdd = newStringToAdd.replace("%40", "@");
 		allInfo.set(4, newStringToAdd);
 		
 		// Take all the information that has been passed in, and go through it 1 by one
