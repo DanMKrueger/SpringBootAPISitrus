@@ -1,6 +1,10 @@
 package com.sitrus.controller;
 
-import java.util.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sitrus.ConnectionManager;
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
 
 
 @RestController
-public class SignUpController {
+public class SignUpController{
 	
 	@Autowired
 	private UserRepository userRepo;
@@ -22,6 +27,42 @@ public class SignUpController {
 	public void createUserObject(@RequestBody String enteredUser) {
 		//System.out.println(enteredUser);
 		createUser(enteredUser);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/login")
+	public void testing(@RequestBody String enteredString) throws SQLException {
+		//System.out.println(enteredUser);
+		userLogin(enteredString);
+	}
+	
+	public User userLogin(String enteredString)  throws SQLException{
+		//un=DMKrueger&pass=asdfsaf
+		User enteredUser = new User();
+		
+		String delim = "[&]";
+		ArrayList<String> allInfo = new ArrayList<>();
+		
+		String[] parsedString = enteredString.split(delim);
+		for(int i = 0; i < parsedString.length; i++) {
+			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
+			allInfo.add(str);
+		}
+		
+//		Connection con = ConnectionManager.getConnection();
+//		try {
+//			Statement statement = con.createStatement();
+//			String query = "SELECT * FROM users WHERE user_name=\"" + allInfo.get(0) + "\"";
+//			System.out.println(query);
+//			ResultSet rs = statement.executeQuery(query);
+//			rs.next();
+//			String UserName = rs.getString("first_name");
+//			System.out.println(UserName);
+//		}catch(SQLException e){
+//			System.out.println("User Name not found!");
+//			//e.printStackTrace();
+//		}
+		
+		return null;
 	}
 	
 	public User createUser(String userString) {
