@@ -13,7 +13,7 @@ import com.sitrus.user.model.User;
 
 
 @RestController
-public class SignUpController {
+public class SitrusController {
 	
 	@Autowired
 	private UserRepository userRepo;
@@ -74,4 +74,8 @@ public class SignUpController {
 		return enteredUser;
 	}
 
+	@RequestMapping(method=RequestMethod.POST, value="/login")
+	public void testing(@RequestBody String enteredUser) {
+		System.out.println(userRepo.findOne(null));
+	}
 }
