@@ -34,6 +34,9 @@ public class SignUpController{
 		userLogin(enteredString);
 	}
 	
+/******************************* User Login *******************************/
+
+	
 	public User userLogin(String enteredString)  throws Exception{
 		//un=DMKrueger&pass=asdfsaf
 		User enteredUser = new User();
@@ -54,6 +57,8 @@ public class SignUpController{
 		});
 		return null;
 	}
+	
+/******************************* Create User *******************************/
 	
 	public User createUser(String userString) {
 		
