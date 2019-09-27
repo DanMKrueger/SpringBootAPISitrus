@@ -1,8 +1,12 @@
 package com.sitrus.controller;
 
-import java.util.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +27,38 @@ public class SitrusController {
 		//System.out.println(enteredUser);
 		createUser(enteredUser);
 	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/login")
+	public void testing(@RequestBody String enteredString) throws Exception {
+		//System.out.println(enteredUser);
+		userLogin(enteredString);
+	}
+	
+/******************************* User Login *******************************/
+
+	
+	public User userLogin(String enteredString)  throws Exception{
+		//un=DMKrueger&pass=asdfsaf
+		User enteredUser = new User();
+		
+		String delim = "[&]";
+		ArrayList<String> allInfo = new ArrayList<>();
+		
+		String[] parsedString = enteredString.split(delim);
+		for(int i = 0; i < parsedString.length; i++) {
+			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
+			allInfo.add(str);
+		}
+
+		
+		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
+		allUsers.forEach(n -> {
+			if(n.getUsername().equals(allInfo.get(0))) System.out.println(n.toString());
+		});
+		return null;
+	}
+	
+/******************************* Create User *******************************/
 	
 	public User createUser(String userString) {
 		
