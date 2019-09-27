@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
@@ -27,7 +28,7 @@ public class SitrusController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/signup")
 	public void createUserObject(@RequestBody String enteredUser) {
-		//System.out.println(enteredUser);
+		System.out.println(enteredUser);
 		createUser(enteredUser);
 	}
 
@@ -59,9 +60,8 @@ public class SitrusController {
 		// get the email adress, and we replace the % with an @ and then replace the
 		// email with
 		// the fixed email in our array list before we make our User object.
-		//System.out.println(userString);
 		newStringToAdd = allInfo.get(4);
-		newStringToAdd = newStringToAdd.replace("%40", "@");
+		newStringToAdd = newStringToAdd.replace('%', '@');
 		allInfo.set(4, newStringToAdd);
 
 		// Take all the information that has been passed in, and go through it 1 by one
@@ -69,7 +69,6 @@ public class SitrusController {
 		// The information passed in will always be in the same order, so we can set our
 		// user object
 		// like we do below.
-		enteredUser.setId();
 		enteredUser.setUsername(allInfo.get(0));
 		enteredUser.setUserPassword(allInfo.get(1));
 		enteredUser.setFirstName(allInfo.get(2));
@@ -95,15 +94,24 @@ public class SitrusController {
 
 	}
 
-	// process forget password
-	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
-	public ModelAndView processFogetPass(ModelAndView modelandview, @RequestParam("email") HttpServletRequest request) {
+	// process reset password form
+	@RequestMapping(value = "/reset", method = RequestMethod.POST)
+	public ModelAndView setNewPass(ModelAndView modelAndView, RedirectAttributes redir, User user) {
+
+		// find user by email
+		Optional<User> opUser = userService.findUserByEmail(user.getEmail());
+
+		if(opUser.isPresent()) {
+			
 		
-		//look up user in db by email
-		Optional<User> optional = userService.findUserByEmail(enteredUser.getEmail());
+			
+			
+			
+		}
 		
 		
+		
+
 	}
-	
 
 }
