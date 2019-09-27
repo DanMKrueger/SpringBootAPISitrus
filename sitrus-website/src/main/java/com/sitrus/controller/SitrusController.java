@@ -109,9 +109,4 @@ public class SitrusController {
 		// Return the user object we created and set the fields of.
 		return enteredUser;
 	}
-
-	@RequestMapping(method=RequestMethod.POST, value="/login")
-	public void testing(@RequestBody String enteredUser) {
-		System.out.println(userRepo.findOne(null));
-	}
 }
