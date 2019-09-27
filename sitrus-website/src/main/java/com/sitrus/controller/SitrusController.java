@@ -19,13 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
-import com.sitrus.user.service.UserService;
 
 @RestController
 public class SitrusController {
-
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private UserRepository userRepo;
