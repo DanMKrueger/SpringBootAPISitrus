@@ -1,21 +1,12 @@
 package com.sitrus.controller;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sitrus.repository.UserRepository;
 import com.sitrus.user.model.User;
@@ -34,7 +25,7 @@ public class SitrusController {
 
 	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
-	public void testing(@RequestBody String enteredString) throws Exception {
+	public void LoginUser(@RequestBody String enteredString) throws Exception {
 		//System.out.println(enteredUser);
 		userLogin(enteredString);
 	}
@@ -43,7 +34,7 @@ public class SitrusController {
 
 	
 	public User userLogin(String enteredString)  throws Exception{
-		//un=DMKrueger&pass=asdfsaf
+		//user_name=DMKrueger&user_password=asdfsaf
 		User enteredUser = new User();
 		
 		String delim = "[&]";
@@ -94,9 +85,9 @@ public class SitrusController {
 		// email with
 		// the fixed email in our array list before we make our User object.
 		newStringToAdd = allInfo.get(4);
-		newStringToAdd = newStringToAdd.replace('%', '@');
+		newStringToAdd = newStringToAdd.replace("%40", "@");
 		allInfo.set(4, newStringToAdd);
-
+		
 		// Take all the information that has been passed in, and go through it 1 by one
 		// to create our user.
 		// The information passed in will always be in the same order, so we can set our
