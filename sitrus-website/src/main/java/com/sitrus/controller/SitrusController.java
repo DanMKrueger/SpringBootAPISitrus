@@ -90,8 +90,7 @@ public class SitrusController {
 		return msg;
 	}
 	
-/******************************* Create User * @return 
- * @return *******************************/
+/******************************* Create User ********************************/
 	
 	public int createUser(String userString) {
 		
