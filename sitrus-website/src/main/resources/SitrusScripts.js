@@ -202,7 +202,7 @@ function SignUp(user, password, confirm, newEmail, fname, lname, zipcode) {
 //     return xmlHttp.responseText;
 // }
 
-function PasswordReset(passwordreset, confirm) {
+function PasswordReset(user, passwordreset, confirm) {
     if (passwordreset == "") {
         $('.passwordResetPopup').empty();
         $('.passwordResetPopup').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> You did not complete your password reset!</div>");
@@ -215,11 +215,42 @@ function PasswordReset(passwordreset, confirm) {
         $('.passwordResetPopup').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> Password must be at least 8 characters long!</div>");
     }
     else {
-        $('.passwordResetPopup').empty();
-        $('.passwordResetPopup').prepend("<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Password has been reset!</div>");
-        setTimeout(function () {
-            location.href = 'index.html';
-        }, 1000);
+    	
+    	$.ajax({
+            url: "http://localhost:8080/passwordreset",
+            type: 'POST',
+            contentType: 'application/json',
+            data: {
+                username: user,
+                userPassword: confirm
+
+            },
+            success: function(msg){
+                if(msg == 0){
+                    $('.passwordResetPopup').empty();
+                    $('.passwordResetPopup').prepend("<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Password Reset!</div>");
+                    //alert("Account Created!");
+                    setTimeout(function(){
+                        location.href='index.html';
+                    }, 1000);
+                }
+                else{
+                    //alert("Username already exists!");
+                	 $('.passwordResetPopup').empty();
+                     $('.passwordResetPopup').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> Username not found!</div>");
+                }
+            },
+            error:function(){
+                alert("AJAX Fail");
+            }
+
+        });
+    	
+//        $('.passwordResetPopup').empty();
+//        $('.passwordResetPopup').prepend("<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Password has been reset!</div>");
+//        setTimeout(function () {
+//            location.href = 'index.html';
+//        }, 1000);
     }
 
 var x = 1;

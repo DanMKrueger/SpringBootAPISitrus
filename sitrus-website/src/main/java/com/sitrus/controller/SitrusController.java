@@ -33,6 +33,13 @@ public class SitrusController {
 		return msg;
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/passwordreset")
+	public @ResponseBody int ResetPass(@RequestBody String enteredString) throws Exception {
+		//System.out.println(enteredUser);
+		int msg = ResetPassword(enteredString);
+		return msg;
+	}
+	
 
 	
 /******************************* User Login *******************************/
@@ -189,4 +196,56 @@ public class SitrusController {
 		// Return the user object we created and set the fields of.
 		return msg;
 	}
+	
+	/**************************************** Reset Pass ****************************************/
+	public int ResetPassword(String enteredString) throws Exception{
+		User enteredUser = new User();
+		
+		int msg = 0;
+		
+		String delim = "[&]";
+		ArrayList<String> allInfo = new ArrayList<>();
+		/*
+		 * Go through the string that was entered, and split it up on the &
+		 */
+		String[] parsedString = enteredString.split(delim);
+		
+		/*
+		 * Go through the split up string, and just get the values that are to the right of the =
+		 */
+		for(int i = 0; i < parsedString.length; i++) {
+			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
+			allInfo.add(str);
+		}
+				
+		/*
+		 * Make an array list, allUsers, and put the entire databsae in it. Now, we go through that
+		 * one at a time and see if the username exists in the database. If it does, we take that user and put it 
+		 * into our enteredUser object and set msg = 0 so we can use that later. If the username does not
+		 * exist, we set msg = 1.
+		 */
+		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
+		for(int i = 0; i < allUsers.size(); i++) {
+			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+				enteredUser = allUsers.get(i);
+				msg = 0;
+				break;
+			}
+			else {
+				msg = 1;
+			}
+		}
+		
+		/*
+		 * If the username exists, we take the user object and update the password. Then, we save
+		 * the entered user to the database so it updates the password.
+		 */
+		if(msg == 0) {
+			enteredUser.setUserPassword(allInfo.get(1));
+			userRepo.save(enteredUser);
+		}
+				
+		return msg;
+	}
+	
 }
