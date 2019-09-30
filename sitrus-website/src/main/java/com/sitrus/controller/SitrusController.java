@@ -15,7 +15,6 @@ import com.sitrus.user.model.User;
 @RestController
 public class SitrusController {
 
-
 	@Autowired
 	private UserRepository userRepo;
 
