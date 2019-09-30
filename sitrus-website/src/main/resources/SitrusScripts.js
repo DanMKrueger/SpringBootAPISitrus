@@ -100,12 +100,13 @@ function LoginButton(user, password){
                 if(msg == 0){
                     $('.loginPopup').empty();
                     $('.loginPopup').prepend("<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Welcome to Sitrus!</div>");
-                    alert("Logged in!");
+                    //alert("Logged in!");
                     setTimeout(function(){
                         location.href='index.html';
                     }, 1000);
                 }else{
-                    alert("Username or Password incorrect!");
+                	  $('.loginPopup').empty();
+                      $('.loginPopup').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> Username or Password incorrect!</div>");
                 }
             },
             error:function(){
@@ -170,16 +171,20 @@ function SignUp(user, password, confirm, newEmail, fname, lname, zipcode) {
                 if(msg == 0){
                     $('.BootStrapPopUp').empty();
                     $('.BootStrapPopUp').prepend("<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Account created! Redirecting to home page!</div>");
-                    alert("Account Created!");
+                    //alert("Account Created!");
                     setTimeout(function(){
                         location.href='index.html';
                     }, 1000);
                 }
                 else if(msg == 2){
-                	alert("Email already used!")
+                	//alert("Email already used!");
+                	 $('.BootStrapPopUp').empty();
+                     $('.BootStrapPopUp').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> Email already used!</div>");
                 }
                 else{
-                    alert("Username already exists!");
+                    //alert("Username already exists!");
+                	 $('.BootStrapPopUp').empty();
+                     $('.BootStrapPopUp').prepend("<div class='alert alert-danger' style='font-size:2'><strong>Warning!</strong> Username already exists!</div>");
                 }
             },
             error:function(){
