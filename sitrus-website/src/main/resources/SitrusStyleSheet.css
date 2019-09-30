@@ -1,0 +1,269 @@
+/* Justin Rojas, Abdul Raza, Justynn Palmer, Dan Krueger */
+
+body {
+    background-image:url("./addOnFiles/whiteAndGoldBackground.jpg");
+    background-size: cover;
+}
+
+@font-face {
+    font-family: august;
+    src: url("DaFont/Hey August.otf");
+}
+
+#testingfont{
+    font-family: august;
+    color:#F7DC6F;
+    font-size: 40px;
+}
+
+
+/* .topnav {
+    overflow: hidden;
+    background-image: linear-gradient(-90deg, #997a00, #ffdb4d);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 1px solid black;
+    border-right: none;
+}
+
+.topnav > a {
+    list-style: none;
+    float: left;
+    color: black;
+    text-align: center;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+    width: calc((100%)*(1/6));
+    text-decoration: none;
+    font-size: 17px;
+    border-left: 1px solid black;
+    box-sizing: border-box;
+}
+
+.topnav a:hover {
+    background-color: #a8880b;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: white;
+    color: black;
+} */
+
+.navbarGradient {
+    background-image: linear-gradient(-90deg, #995c00, #ff9900);
+}
+
+#bigboi {
+    font-size: 100%;
+    color: #F9E79F;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+
+#pageNumber {
+    position: fixed;
+    left: 5%;
+    bottom: -4px;
+    transform: translate(-50%, -50%);
+}
+
+table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 30%;
+    background-image: linear-gradient(black,gray, black);
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 20px;
+    color: #F9E79F;
+}
+
+/* #elevatorMusic {
+    position: relative;
+    bottom: 0;
+    right: 0;
+} */
+
+/* #motivation {
+    position: fixed;
+    bottom: 75px;
+    right: 35px;
+} */
+
+#myform {
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    color: #F9E79F;
+}
+
+.shadowing {
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#scrollingDesc{
+    /* position: absolute;
+    left: 40%;
+    width: 35%;
+    margin-left:20px; */
+    word-wrap: break-word;
+    max-width: 90%;
+}
+
+.aboutPageClass{
+    width: 50%;
+    line-height: 2;
+}
+
+.form-container{
+    /* align-self: center; */
+    font-size:30px;
+    color: #fff;
+    width: 450px;
+    height: 0px;
+    padding: 30px 30px;
+
+    border-radius: 20px;
+
+    margin: auto;
+    padding-top: 30vh;
+}
+.rightList{
+    /* align-self: center; */
+    font-size:30px;
+    color: #fff;
+    width: 450px;
+    height: 0px;
+    padding: 30px 30px;
+
+    border-radius: 20px;
+
+    margin: auto;
+    padding-top: 30vh;
+}
+.longinListDiv{
+    text-align:center;
+}
+.longinListDiv ul{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    /* For IE, the outcast */
+    zoom:1;
+    *display: inline;
+}
+ul.list{
+    list-style-type: none;
+    text-align: center;
+}
+ul.list li{
+    font-size:30px;
+    /* height: 50px; */
+    width: 360px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+ul.list li input{
+    font-size:20px !important;
+    width: 360px;
+    text-align: center;
+    color:#fff;
+    padding: 10px 0px;
+    background-color: #000000;
+    border-radius: 5px;
+}
+#Submit{
+    width: 360px;
+    font-size:30px;
+    background-color: #1A5276;
+}
+#signup{
+    width: 360px;
+    font-size:40px;
+    background-color: #F39C12;
+}
+ul.list li:nth-child(5){
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    color: #F9E79F;
+}
+#forgotPassword{
+    width: 360px;
+    font-size:30px;
+    background-color:#CB4335;
+}
+
+#contactInfo li{
+    text-shadow: 2px 1px 0px #000000;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #dec663;
+    list-style-type:none;
+    text-align: left;
+
+}
+
+.faq{
+    align-self: center;
+    font-size:30px;
+    color: #fff;
+    width: auto;
+    height: auto;
+    padding: 30px 30px;
+
+    border-radius: 20px;
+    border:none;
+    margin: auto;
+   /* padding-top: -30vh;*/
+}
+
+#mouseMoveID{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    background-color: lightblue;
+}
+
+#innerMouseMove{
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    width:30%;
+    word-wrap: break-word;
+    font-size: 80%;
+    /* width: 100px;
+    height: 100px; */
+    border: 1px solid black;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    color:white;
+    background-image: linear-gradient(black,gray, black);
+}
+#mouseoverBox{
+    /* position: absolute; */
+    bottom: 0;
+    right: 0;
+}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sitrus.repository.UserRepository;
@@ -19,24 +20,31 @@ public class SitrusController {
 	private UserRepository userRepo;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/signup")
-	public void createUserObject(@RequestBody String enteredUser) {
+	public @ResponseBody int createUserObject(@RequestBody String enteredUser) {
 		System.out.println(enteredUser);
-		createUser(enteredUser);
+		int msg = createUser(enteredUser);
+		return msg;
 	}
 
 	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
-	public void LoginUser(@RequestBody String enteredString) throws Exception {
+	public @ResponseBody int LoginUser(@RequestBody String enteredString) throws Exception {
 		//System.out.println(enteredUser);
-		userLogin(enteredString);
+		int msg = userLogin(enteredString);
+		
+		return msg;
 	}
+	
+
 	
 /******************************* User Login *******************************/
 
 	
-	public User userLogin(String enteredString)  throws Exception{
+	public int userLogin(String enteredString)  throws Exception{
 		//user_name=DMKrueger&user_password=asdfsaf
 		User enteredUser = new User();
+		
+		int msg = 0;
 		
 		String delim = "[&]";
 		ArrayList<String> allInfo = new ArrayList<>();
@@ -49,15 +57,35 @@ public class SitrusController {
 
 		
 		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
-		allUsers.forEach(n -> {
-			if(n.getUsername().equals(allInfo.get(0))) System.out.println(n.toString());
-		});
-		return null;
+		
+		for(int i = 0; i < allUsers.size(); i++) {
+			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+				enteredUser = allUsers.get(i);
+				msg = 0;
+				break;
+			}
+			else {
+				msg = 1;
+			}
+		}
+		
+		if(msg == 0) {
+			if(enteredUser.getUserPassword().equals(allInfo.get(1))) {
+				msg = 0;
+			}else {
+				msg = 1;
+			}
+		}
+		
+		return msg;
 	}
 	
-/******************************* Create User *******************************/
+/******************************* Create User * @return 
+ * @return *******************************/
 	
-	public User createUser(String userString) {
+	public int createUser(String userString) {
+		
+		int msg = 1;
 
 		// Create a new user object, a delimiter we use to split up our string passed
 		// in, and arrays to store information
@@ -94,19 +122,47 @@ public class SitrusController {
 		// The information passed in will always be in the same order, so we can set our
 		// user object
 		// like we do below.
-		enteredUser.setUsername(allInfo.get(0));
-		enteredUser.setUserPassword(allInfo.get(1));
-		enteredUser.setFirstName(allInfo.get(2));
-		enteredUser.setLastName(allInfo.get(3));
-		enteredUser.setEmail(allInfo.get(4));
-		enteredUser.setZip(allInfo.get(5));
-		enteredUser.setUserType(allInfo.get(6));
-
-		userRepo.save(enteredUser);
-
-		System.out.println(enteredUser.toString());
+		
+		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
+		
+		for(int i = 0; i < allUsers.size(); i++) {
+			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+				msg = 1;
+				break;
+			}
+			else {
+				msg = 0;
+			}
+		}
+		if(msg == 0) {
+			for(int i = 0; i < allUsers.size(); i++) {
+				if(allUsers.get(i).getEmail().equals(allInfo.get(4))) {
+					msg = 2;
+					break;
+				}
+				else {
+					msg = 0;
+				}
+			}
+		}
+		
+		if(msg == 0) {
+		
+			enteredUser.setUsername(allInfo.get(0));
+			enteredUser.setUserPassword(allInfo.get(1));
+			enteredUser.setFirstName(allInfo.get(2));
+			enteredUser.setLastName(allInfo.get(3));
+			enteredUser.setEmail(allInfo.get(4));
+			enteredUser.setZip(allInfo.get(5));
+			enteredUser.setUserType(allInfo.get(6));
+			msg = 0;
+	
+			userRepo.save(enteredUser);
+	
+			System.out.println(enteredUser.toString());
+		}
 
 		// Return the user object we created and set the fields of.
-		return enteredUser;
+		return msg;
 	}
 }
