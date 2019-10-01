@@ -69,8 +69,9 @@ $(document).ready(function() {
 	}
 	// When a user tries to Sign Up, send the approrpiate HTTP
 	// Request for processing
-	$(document).keyup(function($e) {
+	$(document).unbind('keypress').bind('keypress', function($e) {
 		if ($e.which == 13) {
+			//alert("here");
 			$("#Submit").click();
 		}
 	});
@@ -106,7 +107,7 @@ function LoginButton(user, password) {
 						$('.loginPopup')
 								.prepend(
 										"<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Welcome to Sitrus!</div>");
-						// alert("Logged in!");
+						//alert("Logged in!");
 						setTimeout(function() {
 							location.href = 'index.html';
 						}, 1000);
@@ -187,12 +188,12 @@ function SignUp(user, password, confirm, newEmail, fname, lname, zipcode) {
 						$('.BootStrapPopUp')
 								.prepend(
 										"<div class='alert alert-success' style='font-size:2'><strong>Success!</strong> Account created! Redirecting to home page!</div>");
-						// alert("Account Created!");
+						//alert("Account Created!");
 						setTimeout(function() {
 							location.href = 'index.html';
 						}, 1000);
 					} else if (msg == 2) {
-						// alert("Email already used!");
+						//alert("Email already used!");
 						$('.BootStrapPopUp').empty();
 						$('.BootStrapPopUp')
 								.prepend(
