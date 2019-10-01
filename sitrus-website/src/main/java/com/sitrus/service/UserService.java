@@ -1,4 +1,4 @@
-package com.sitrus.controller.service;
+package com.sitrus.service;
 
 import java.util.ArrayList;
 
