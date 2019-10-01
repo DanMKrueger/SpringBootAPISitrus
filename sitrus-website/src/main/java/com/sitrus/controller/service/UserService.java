@@ -53,8 +53,8 @@ public class UserService {
 			}
 		}
 		/*
-		 * If we get into the if statment under this comment, that means that msg was equal to 0, which
-		 * means that there is a user in our databse with the username entered on the website.
+		 * If we get into the if statement under this comment, that means that msg was equal to 0, which
+		 * means that there is a user in our database with the username entered on the website.
 		 * Now, we check the password. We take the entered password and compare it to the password
 		 * we have stored in the database (credentials.get(1)). If they match, we return 0 which is our code
 		 * to show everything is correct. Otherwise, we return 1.
@@ -170,7 +170,7 @@ public class UserService {
 		return msg;
 	}
 	
-	/**************************************** Reset Pass ****************************************/
+/**************************************** Reset Pass ****************************************/
 	public int ResetPassword(String enteredString) throws Exception{
 		User enteredUser = new User();
 		
