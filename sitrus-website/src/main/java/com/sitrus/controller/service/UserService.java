@@ -10,10 +10,10 @@ import com.sitrus.user.model.User;
 
 @Service
 public class UserService {
-
 	
 	@Autowired
 	private UserRepository userRepo;
+	
 	
 /******************************* User Login *******************************/
 
@@ -25,25 +25,25 @@ public class UserService {
 		int msg = 0;
 		
 		String delim = "[&]";
-		ArrayList<String> allInfo = new ArrayList<>();
+		ArrayList<String> credentials = new ArrayList<>();
 		
 		String[] parsedString = enteredString.split(delim);
 		for(int i = 0; i < parsedString.length; i++) {
 			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
-			allInfo.add(str);
+			credentials.add(str);
 		}
 
 		/* 
 		 * Make an array list with the entire database in it. Then, we go through it one 
 		 * User at a time and check the username and see if it is equal to the username that 
-		 * was entered (allInfo.get(0)). If it is, that means that the user exists, so
+		 * was entered (credentials.get(0)). If it is, that means that the user exists, so
 		 * we set our int msg equal to 0, and break out of the for loop. If no user is found msg 
 		 * will be equal to 1, and when we return 1 the JavaScript file takes that as no user being
 		 * found with that user name, so that is the alert we show.
 		*/
 		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
 		for(int i = 0; i < allUsers.size(); i++) {
-			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+			if(allUsers.get(i).getUsername().equals(credentials.get(0))) {
 				enteredUser = allUsers.get(i);
 				msg = 0;
 				break;
@@ -56,11 +56,11 @@ public class UserService {
 		 * If we get into the if statment under this comment, that means that msg was equal to 0, which
 		 * means that there is a user in our databse with the username entered on the website.
 		 * Now, we check the password. We take the entered password and compare it to the password
-		 * we have stored in the database (allInfo.get(1)). If they match, we return 0 which is our code
+		 * we have stored in the database (credentials.get(1)). If they match, we return 0 which is our code
 		 * to show everything is correct. Otherwise, we return 1.
 		 */
 		if(msg == 0) {
-			if(enteredUser.getUserPassword().equals(allInfo.get(1))) {
+			if(enteredUser.getUserPassword().equals(credentials.get(1))) {
 				msg = 0;
 			}else {
 				msg = 1;
@@ -82,7 +82,7 @@ public class UserService {
 		
 		User enteredUser = new User();
 		String delims = "[&]";
-		ArrayList<String> allInfo = new ArrayList<>();
+		ArrayList<String> credentials = new ArrayList<>();
 		String newStringToAdd;
 
 		/* 
@@ -97,7 +97,7 @@ public class UserService {
 		 */
 		for (int i = 0; i < parsedString.length; i++) {
 			String str = parsedString[i].substring(parsedString[i].indexOf("=") + 1);
-			allInfo.add(str);
+			credentials.add(str);
 
 		}
 
@@ -106,14 +106,14 @@ public class UserService {
 		 *  get the email adress, and we replace the % with an @ and then replace the 
 		 *  email with the fixed email in our array list before we make our User object.
 		 */
-		newStringToAdd = allInfo.get(4);
+		newStringToAdd = credentials.get(4);
 		newStringToAdd = newStringToAdd.replace("%40", "@");
-		allInfo.set(4, newStringToAdd);
+		credentials.set(4, newStringToAdd);
 		
 
 		/*
 		 * We take our entire database and put it into an ArrayList named allUsers. Then with that we go through
-		 * one entry at a time and check to see if the entered username(allInfo.get(0)) is equal to any of the usernames
+		 * one entry at a time and check to see if the entered username(credentials.get(0)) is equal to any of the usernames
 		 * that is already in the database. If it is, we set msg = 1 and we break because that means the username is already taken,
 		 * and when we return 1 in this method, 1 gets returned to the JS file and it knows that 1 is the code
 		 * for the uesrname already being taken. If the username is not there, we make msg = 0 which is good. If it gets past all of that,
@@ -123,7 +123,7 @@ public class UserService {
 		 */
 		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
 		for(int i = 0; i < allUsers.size(); i++) {
-			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+			if(allUsers.get(i).getUsername().equals(credentials.get(0))) {
 				msg = 1;
 				break;
 			}
@@ -133,7 +133,7 @@ public class UserService {
 		}
 		if(msg == 0) {
 			for(int i = 0; i < allUsers.size(); i++) {
-				if(allUsers.get(i).getEmail().equals(allInfo.get(4))) {
+				if(allUsers.get(i).getEmail().equals(credentials.get(4))) {
 					msg = 2;
 					break;
 				}
@@ -152,13 +152,13 @@ public class UserService {
 		 */
 		if(msg == 0) {
 		
-			enteredUser.setUsername(allInfo.get(0));
-			enteredUser.setUserPassword(allInfo.get(1));
-			enteredUser.setFirstName(allInfo.get(2));
-			enteredUser.setLastName(allInfo.get(3));
-			enteredUser.setEmail(allInfo.get(4));
-			enteredUser.setZip(allInfo.get(5));
-			enteredUser.setUserType(allInfo.get(6));
+			enteredUser.setUsername(credentials.get(0));
+			enteredUser.setUserPassword(credentials.get(1));
+			enteredUser.setFirstName(credentials.get(2));
+			enteredUser.setLastName(credentials.get(3));
+			enteredUser.setEmail(credentials.get(4));
+			enteredUser.setZip(credentials.get(5));
+			enteredUser.setUserType(credentials.get(6));
 			msg = 0;
 	
 			userRepo.save(enteredUser);
@@ -177,7 +177,7 @@ public class UserService {
 		int msg = 0;
 		
 		String delim = "[&]";
-		ArrayList<String> allInfo = new ArrayList<>();
+		ArrayList<String> credentials = new ArrayList<>();
 		/*
 		 * Go through the string that was entered, and split it up on the &
 		 */
@@ -188,7 +188,7 @@ public class UserService {
 		 */
 		for(int i = 0; i < parsedString.length; i++) {
 			String str = parsedString[i].substring(parsedString[i].indexOf("=")+1);
-			allInfo.add(str);
+			credentials.add(str);
 		}
 				
 		/*
@@ -199,7 +199,7 @@ public class UserService {
 		 */
 		ArrayList<User> allUsers = (ArrayList<User>) userRepo.findAll();
 		for(int i = 0; i < allUsers.size(); i++) {
-			if(allUsers.get(i).getUsername().equals(allInfo.get(0))) {
+			if(allUsers.get(i).getUsername().equals(credentials.get(0))) {
 				enteredUser = allUsers.get(i);
 				msg = 0;
 				break;
@@ -214,7 +214,7 @@ public class UserService {
 		 * the entered user to the database so it updates the password.
 		 */
 		if(msg == 0) {
-			enteredUser.setUserPassword(allInfo.get(1));
+			enteredUser.setUserPassword(credentials.get(1));
 			userRepo.save(enteredUser);
 		}
 				
